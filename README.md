@@ -1,43 +1,99 @@
 # 🛰️ Khanij-Drishti (खनिज-दृष्टि)
-### AI-Powered Spaceborne Hyperspectral Mineral Prospectivity Hub & Strategic Reserve Intelligence
+> **Enterprise Spaceborne AI Hub for Critical Mineral Prospectivity & 3D Subsurface Reserve Estimation**
 
-Khanij-Drishti is an end-to-end geospatial artificial intelligence platform designed to accelerate critical mineral exploration (Manganese) across major Indian metallogenic belts while quantifying future supply deficits under the National Steel Mission.
-
----
-
-## 📌 Key Capabilities
-
-- **Multi-Sensor Earth Observation Ingestion:** Cloud-masked Copernicus Sentinel-2 Level-2A surface reflectance composites combined with USGS SRTM Digital Elevation Models.
-- **Mineralogical Feature Engineering:** Real-time computation of SWIR-1/NIR absorption indices, ferric oxide ratios ($B4/B2$), and hydroxyl alteration mapping.
-- **Supervised Prospectivity Classification:** Balanced Random Forest classifier trained on confirmed ground-truth deposits (Balaghat, Keonjhar, Sandur, Shivamogga) to output continuous $0.0-1.0$ mineralization probabilities.
-- **Automated Drill-Target Prioritization:** Spatial extraction and confidence-ranking of high-potential greenfield exploration coordinates.
-- **Supply-Chain Econometrics:** Dynamic time-series modeling forecasting domestic production bottlenecks against national demand projections through 2030.
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.110.0-009688?style=flat-square&logo=fastapi)](https://fastapi.tiangolo.com/)
+[![Three.js](https://img.shields.io/badge/Three.js-r128-black?style=flat-square&logo=three.js)](https://threejs.org/)
+[![Leaflet](https://img.shields.io/badge/Leaflet-1.9.4-199900?style=flat-square&logo=leaflet)](https://leafletjs.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 
 ---
 
-## 🛠️ Technology Stack
+## 📌 Executive Overview
+India’s **National Critical Mineral Mission** demands rapid acceleration in strategic mineral exploration. Traditional ground geophysical surveys and exploratory core drilling take years and cost crores across thousands of square kilometers.
 
-- **Cloud Compute & Ingestion:** Google Earth Engine API, Python
-- **Machine Learning & Geostatistics:** Scikit-Learn, Random Forest, NumPy, Pandas
-- **Geospatial Analytics & Rendering:** Leaflet.js, ESRI World Imagery, GeoPandas, Chart.js
-- **Presentation Engine:** Enterprise-grade interactive GIS dashboard with multi-corridor switching
-
----
-
-## 🗺️ Covered Exploration Corridors
-
-1. **Central India Belt:** Balaghat & Bhandara Formations (Madhya Pradesh / Maharashtra)
-2. **Eastern Iron-Mn Belt:** Keonjhar-Sundargarh Basin (Odisha)
-3. **Southern Belt:** Sandur Schist Belt (Ballari, Karnataka)
-4. **Western Dharwar Belt:** Shivamogga-North Kanara Sector (Karnataka)
+**Khanij-Drishti** bridges greenfield satellite remote sensing and brownfield subsurface reserve estimation by combining:
+1. **Multi-Spectral Spaceborne Analytics** (Sentinel-2 band ratioing for hydrothermal & oxide alteration)
+2. **Spatial Graph Neural Networks (GNN)** to propagate mineralization along tectonic shear lineaments
+3. **Target-Specific 3D Inversion Block Modeling** ($x, y, z$) to calculate in-situ tonnage ($MT$), average grade ($\% Mn$), and stripping ratios
+4. **Automated UNFC-333 PDF Prospectus Generation** for instant exploration concession triage
 
 ---
 
-## 🚀 Quickstart
+## 🗺️ Supported Indian Metallogenic Corridors
+* **Central India Belt (Balaghat, Madhya Pradesh):** Proterozoic Sausar Group (High-grade Pyrolusite/Braunnite)
+* **Eastern Iron-Mn Belt (Keonjhar, Odisha):** Iron Ore Supergroup stratiform manganese lenses
+* **Sandur Schist Belt (Ballari, Karnataka):** Steeply plunging synclinal fold troughs
+* **Western Dharwar Belt (Shivamogga, Karnataka):** Lateritoid supergene replacement blankets
 
-1. Open `GeoMn_A.ipynb` in [Google Colab](https://colab.research.google.com/).
-2. Authenticate your non-commercial Earth Engine project credentials:
-   ```python
-   import ee
-   ee.Authenticate()
-   ee.Initialize(project='your-gcp-project-id')
+---
+
+## ⚡ System Architecture
+🛰️ Spaceborne Rasters (Sentinel-2 / DEM)
+                            │
+                            ▼
+     ┌─────────────────────────────────────────────┐
+     │     1. Spectral Feature Engine              │
+     │  • Ferric Oxide Index (B04/B02)             │
+     │  • SWIR Hydrothermal Alteration (B11/B12)   │
+     │  • Clay Alteration & NDMI Matrix            │
+     └──────────────────────┬──────────────────────┘
+                            │
+                            ▼
+     ┌─────────────────────────────────────────────┐
+     │     2. Spatial Graph Neural Network (GNN)   │
+     │  • Raster cells converted to Graph Nodes    │
+     │  • Message passing across Tectonic Faults   │
+     │  • Non-linear Mineralization Probability    │
+     └──────────────────────┬──────────────────────┘
+                            │
+                            ▼
+     ┌─────────────────────────────────────────────┐
+     │     3. 3D Subsurface Inversion Engine       │
+     │  • Target-Specific Procedural Block Models  │
+     │  • Depth Attenuation & Specific Gravity     │
+     │  • Inferred Tonnage & Waste:Ore Strip Ratio │
+     └──────────────────────┬──────────────────────┘
+                            │
+        ┌───────────────────┴───────────────────┐
+        ▼                                       ▼
+🗺️ Dual 2D/3D Web Visualizer            📄 Autonomous UNFC PDF Export
+(Leaflet GIS + Three.js WebGL)         (UNFC Code: 333 Prospectus)
+
+
+---
+
+## 🔬 Core Methodologies
+
+### 1. Spectral Alteration Indices
+Hydrothermal manganese and gossan signatures are isolated using vectorized band calculations:
+$$\text{Ferric Oxide Index} = \frac{\text{Band 4 (Red)}}{\text{Band 2 (Blue)}}$$
+$$\text{Hydrothermal SWIR Index} = \frac{\text{Band 11 (SWIR-1)}}{\text{Band 12 (SWIR-2)}}$$
+
+### 2. Tectonic Graph Propagation
+Geological faults serve as conductances where mineralization fluids migrate:
+$$h_i^{(l+1)} = \sigma \left( W \cdot \sum_{j \in \mathcal{N}(i)} \frac{e_{ij}}{\sqrt{d_i d_j}} h_j^{(l)} \right)$$
+where $e_{ij}$ represents tectonic fault proximity weights between raster cells $i$ and $j$.
+
+### 3. Subsurface 3D Inversion & Ore Reserve Economics
+Ore tonnage is estimated across discretized voxel cells ($V = 20\text{m} \times 20\text{m} \times 10\text{m}$):
+$$\text{Total Inferred Tonnage (MT)} = \sum_{k} \left( V_k \times \rho_k \right) \quad \text{where } \rho_k = \text{Specific Gravity} \approx 3.85 \text{ g/cm}^3$$
+
+---
+
+## 🚀 Quickstart & Installation
+
+### Local Setup
+```bash
+# 1. Clone the repository
+git clone [https://github.com/Nerdalways/Khanij-Drishti-AI.git](https://github.com/Nerdalways/Khanij-Drishti-AI.git)
+cd Khanij-Drishti-AI
+
+# 2. Create virtual environment
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+# 3. Install dependencies
+pip install -r requirements.txt
+
+# 4. Launch FastAPI Microservice
+uvicorn main:app --reload --port 8000
