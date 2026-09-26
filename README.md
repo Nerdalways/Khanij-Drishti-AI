@@ -1,6 +1,7 @@
 # 🛰️ Khanij-Drishti (खनिज-दृष्टि)
-> **Enterprise Spaceborne AI Hub for Critical Mineral Prospectivity & 3D Subsurface Reserve Estimation**
+> **Enterprise Spaceborne AI Hub for Multi-Commodity Prospectivity Screening & Greenfield Spatial Triage**
 
+[![Live Demo](https://img.shields.io/badge/Demo-GitHub%20Pages-brightgreen?style=flat-square&logo=github)](https://nerdalways.github.io/Khanij-Drishti-AI/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.110.0-009688?style=flat-square&logo=fastapi)](https://fastapi.tiangolo.com/)
 [![Three.js](https://img.shields.io/badge/Three.js-r128-black?style=flat-square&logo=three.js)](https://threejs.org/)
 [![Leaflet](https://img.shields.io/badge/Leaflet-1.9.4-199900?style=flat-square&logo=leaflet)](https://leafletjs.com/)
@@ -9,91 +10,57 @@
 ---
 
 ## 📌 Executive Overview
-India’s **National Critical Mineral Mission** demands rapid acceleration in strategic mineral exploration. Traditional ground geophysical surveys and exploratory core drilling take years and cost crores across thousands of square kilometers.
+India’s **National Critical Mineral Mission** demands rapid acceleration in strategic mineral exploration. Traditional ground geophysical surveys and exploratory core drilling require immense capital expenditure across vast concession perimeters.
 
-**Khanij-Drishti** bridges greenfield satellite remote sensing and brownfield subsurface reserve estimation by combining:
-1. **Multi-Spectral Spaceborne Analytics** (Sentinel-2 band ratioing for hydrothermal & oxide alteration)
-2. **Spatial Graph Neural Networks (GNN)** to propagate mineralization along tectonic shear lineaments
-3. **Target-Specific 3D Inversion Block Modeling** ($x, y, z$) to calculate in-situ tonnage ($MT$), average grade ($\% Mn$), and stripping ratios
-4. **Automated UNFC-333 PDF Prospectus Generation** for instant exploration concession triage
+**Khanij-Drishti** serves as a first-order **greenfield spatial triage engine**, prioritizing prospective exploration zones before capital-intensive ground campaigns begin. The platform integrates:
+1. **Multi-Commodity Spectral Band Math** (Sentinel-2 band ratios calibrated for supergene manganese, orogenic gold, and porphyry copper alteration halos)
+2. **Spatial Graph Neural Networks (GNN)** to evaluate mineralization probability along mapped tectonic shear lineaments
+3. **Illustrative 3D Structural Dip Priors** ($x, y, z$) in WebGL to project surface structural plunge and spatial geometry
+4. **Real-Time Operational Dispatch Simulation** powered by live Open-Meteo weather telemetry to forecast shift production shortfalls
+5. **Exploration Concession Prospectus Generator** producing client-side statutory PDF dossiers
 
 ---
 
-## 🗺️ Supported Indian Metallogenic Corridors
-* **Central India Belt (Balaghat, Madhya Pradesh):** Proterozoic Sausar Group (High-grade Pyrolusite/Braunnite)
-* **Eastern Iron-Mn Belt (Keonjhar, Odisha):** Iron Ore Supergroup stratiform manganese lenses
-* **Sandur Schist Belt (Ballari, Karnataka):** Steeply plunging synclinal fold troughs
-* **Western Dharwar Belt (Shivamogga, Karnataka):** Lateritoid supergene replacement blankets
+## 🗺️ Supported Mineral Systems & Indian Corridors
+
+| Commodity | Mineral System Style | Key Formations / Cratons | Primary Spectral Diagnostics |
+| :--- | :--- | :--- | :--- |
+| **Manganese (Mn)** | Stratiform Metasedimentary & Supergene | Balaghat (Sausar Group, MP), Keonjhar (Iron Ore Group, OD), Sandur & Shivamogga (KA) | Ferric Oxide ($B4/B2$), SWIR Shear Clay ($B11/B12$) |
+| **Orogenic Gold (Au)** | Shear-Zone Quartz-Carbonate Lodes | Hutti-Maski Schist Belt (KA), Uti Satellite (KA), Kolar Gold Fields (KA), Jonnagiri (AP) | Gossan Hydroxide ($B11/B4$), Sericite/Muscovite ($B12/B8A$) |
+| **Porphyry Copper (Cu)** | Proterozoic Hydrothermal Stockworks | Malanjkhand Granitoid (MP), Khetri Belt (RJ), Singhbhum Shear Zone (JH) | Phyllic Alteration Halo ($B12/B11$), Leached Cap ($B4/B2$) |
 
 ---
 
 ## ⚡ System Architecture
-🛰️ Spaceborne Rasters (Sentinel-2 / DEM)
+
+```text
+🛰️ Spaceborne Rasters (Sentinel-2 Multi-Spectral / Sentinel-1 SAR / DEM)
                             │
                             ▼
      ┌─────────────────────────────────────────────┐
-     │     1. Spectral Feature Engine              │
-     │  • Ferric Oxide Index (B04/B02)             │
-     │  • SWIR Hydrothermal Alteration (B11/B12)   │
-     │  • Clay Alteration & NDMI Matrix            │
+     │      1. Commodity-Adaptive Feature Engine   │
+     │  • Bare-Ground Dynamic NDVI Masking (<0.35) │
+     │  • Gossan & Hydrothermal Band Ratios        │
+     │  • Multi-Commodity Alteration Regimes       │
      └──────────────────────┬──────────────────────┘
                             │
                             ▼
      ┌─────────────────────────────────────────────┐
-     │     2. Spatial Graph Neural Network (GNN)   │
-     │  • Raster cells converted to Graph Nodes    │
+     │      2. Spatial Graph Neural Network (GNN)  │
+     │  • Raster cells mapped to Graph Nodes       │
      │  • Message passing across Tectonic Faults   │
-     │  • Non-linear Mineralization Probability    │
+     │  • Spatial Blocked Cross-Validation (K-Fold)│
      └──────────────────────┬──────────────────────┘
                             │
                             ▼
      ┌─────────────────────────────────────────────┐
-     │     3. 3D Subsurface Inversion Engine       │
-     │  • Target-Specific Procedural Block Models  │
-     │  • Depth Attenuation & Specific Gravity     │
-     │  • Inferred Tonnage & Waste:Ore Strip Ratio │
+     │      3. Structural Geometry Engine          │
+     │  • Illustrative Dip & Plunge Voxel Projections│
+     │  • Interactive Cut-off & Depth Slicing      │
+     │  • Spatial Convergence Scoring (0-100%)     │
      └──────────────────────┬──────────────────────┘
                             │
         ┌───────────────────┴───────────────────┐
         ▼                                       ▼
-🗺️ Dual 2D/3D Web Visualizer            📄 Autonomous UNFC PDF Export
-(Leaflet GIS + Three.js WebGL)         (UNFC Code: 333 Prospectus)
-
-
----
-
-## 🔬 Core Methodologies
-
-### 1. Spectral Alteration Indices
-Hydrothermal manganese and gossan signatures are isolated using vectorized band calculations:
-$$\text{Ferric Oxide Index} = \frac{\text{Band 4 (Red)}}{\text{Band 2 (Blue)}}$$
-$$\text{Hydrothermal SWIR Index} = \frac{\text{Band 11 (SWIR-1)}}{\text{Band 12 (SWIR-2)}}$$
-
-### 2. Tectonic Graph Propagation
-Geological faults serve as conductances where mineralization fluids migrate:
-$$h_i^{(l+1)} = \sigma \left( W \cdot \sum_{j \in \mathcal{N}(i)} \frac{e_{ij}}{\sqrt{d_i d_j}} h_j^{(l)} \right)$$
-where $e_{ij}$ represents tectonic fault proximity weights between raster cells $i$ and $j$.
-
-### 3. Subsurface 3D Inversion & Ore Reserve Economics
-Ore tonnage is estimated across discretized voxel cells ($V = 20\text{m} \times 20\text{m} \times 10\text{m}$):
-$$\text{Total Inferred Tonnage (MT)} = \sum_{k} \left( V_k \times \rho_k \right) \quad \text{where } \rho_k = \text{Specific Gravity} \approx 3.85 \text{ g/cm}^3$$
-
----
-
-## 🚀 Quickstart & Installation
-
-### Local Setup
-```bash
-# 1. Clone the repository
-git clone [https://github.com/Nerdalways/Khanij-Drishti-AI.git](https://github.com/Nerdalways/Khanij-Drishti-AI.git)
-cd Khanij-Drishti-AI
-
-# 2. Create virtual environment
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# 3. Install dependencies
-pip install -r requirements.txt
-
-# 4. Launch FastAPI Microservice
-uvicorn main:app --reload --port 8000
+🗺️ Dual 2D/3D Web Visualizer           📄 Exploration Dossier Export
+(Leaflet GIS + Three.js WebGL)         (Regional Prospectus & EIA Summary)
